@@ -1,20 +1,12 @@
 # JS.Perlin
 
-## Disclaimer
+**forked from https://github.com/arcanis/js.perlin and made into a simple commonjs library**
 
-If you want to use this library in a WebGL context, please consider using [this one][1] instead.
-
-[1]: https://github.com/ashima/webgl-noise
-
-## Installation
-
-**Warning :** This is a web-only package : it should not be used in a Node environment.
-
-```npm install wo-perlin```
+```npm install perlin```
 
 ## Usage
 
-- *new PERLIN.Generator( [ table ] )*
+- *require('perlin')( [ table ] )*
 
 Returns a new generator instance. If `table` is set, then it will be used
 as random lookup table otherwise a random table will be generated.
@@ -32,7 +24,7 @@ range between `start` and `start+size`, with two parameters : the
 coordinates of the current pixel, and the related Perlin value.
 
 ```javascript
-var generator = new PERLIN.Generator( );
+var generator = require('perlin')( );
 
 generator.generate( [ 0, 0 ], [ 2, 2 ], function ( point, value ) {
     console.log( point, value );

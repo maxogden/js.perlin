@@ -1,6 +1,6 @@
-PERLIN.Generator = function ( table ) {
+function Perlin ( table ) {
 
-	this._table = table || PERLIN.Generator.makeTable( 255 );
+	this._table = table || this.makeTable( 255 );
 	
 	this.octaves = 10;
 	this.frequency = .05;
@@ -8,32 +8,32 @@ PERLIN.Generator = function ( table ) {
 
 };
 
-PERLIN.Generator.random = function ( ) {
+Perlin.prototype = {
+  
+  random: function ( ) {
 
-	return Math.random( );
+  	return Math.random( );
 
-};
+  },
 
-PERLIN.Generator.makeTable = function ( size ) {
+  makeTable: function ( size ) {
 
-	var result = [ ];
-	
-	for ( var n = 0; n < size; ++ n )
-		result[ n ] = PERLIN.Generator.random( );
-	
-	return result;
+  	var result = [ ];
 
-};
+  	for ( var n = 0; n < size; ++ n )
+  		result[ n ] = this.random( );
 
-PERLIN.Generator.cosineInterpolate = function ( a, b, t ) {
+  	return result;
 
-	var c = ( 1 - Math.cos( t * Math.PI ) ) * .5;
-	
-	return ( 1 - c ) * a + c * b;
+  },
 
-};
+  cosineInterpolate: function ( a, b, t ) {
 
-PERLIN.Generator.prototype = {
+  	var c = ( 1 - Math.cos( t * Math.PI ) ) * .5;
+
+  	return ( 1 - c ) * a + c * b;
+
+  },
 	
 	_randify : function ( n ) {
 
@@ -70,7 +70,7 @@ PERLIN.Generator.prototype = {
 		
 		point[ dimension ] = value;
 		
-		return PERLIN.Generator.cosineInterpolate( a, b, fractional );
+		return this.cosineInterpolate( a, b, fractional );
 
 	},
 	
@@ -125,3 +125,5 @@ PERLIN.Generator.prototype = {
 	}
 	
 };
+
+module.exports = Perlin
